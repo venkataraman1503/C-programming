@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node                // declare the nodes in the form of structures in C or in case of C++ we use class.
+   {
+       int data;
+       struct Node* link;
+   };
+struct Node* head;         // declare a pointer(head) which points to a Node.
+void insert(int x)         // insert function to insert the data in the nodes created one by one.
+   {
+      struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));  // dynamic memory(heap) is allocated for the nodes.
+      ptr->data = x;       //inserting the data
+      ptr->link = head;    //swapping the address 
+      head = ptr;        
+   }
+void  print()              // printing the linked list
+   {
+       struct Node* ptr = head;
+       while(ptr!=NULL)
+       {
+           printf("%d  ",ptr->data);
+           ptr=ptr->link;
+        }
+   printf("\n");
+   }
+ int main()
+{  
+    head = NULL;
+    printf("enter the number of elements to be inserted\n");
+    int n,i;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+      int x;
+      printf("enter the elements\n");
+      scanf("%d",&x);
+      insert(x);  //function call to insert function
+      print();    //function call to print function
+    }
+}
+   
