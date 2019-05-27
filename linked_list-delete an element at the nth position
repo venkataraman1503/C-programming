@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+   int data;
+   struct Node* link; 
+};
+struct Node* head;
+struct Node* ptr1;
+void insert(int x,int e)
+{
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = x;
+    if(e==1)
+    {
+        ptr->link = head;
+        head = ptr;
+        
+    }
+    else
+    {  
+     int i;
+     ptr1 = head; 
+     for(i=0;i<e-2;i++)
+    {
+       ptr1 = ptr1->link; 
+    }
+    ptr->link = ptr1->link;
+    ptr1->link = ptr;
+    
+    }
+}
+void take(int d)    //after successfull insertion of all the elements in the linked list we will go for this function and it takes an argumen
+                    //  'd' which is the position to delete.   
+{
+    struct Node* ptr1 = head;
+    struct Node* ptr = head;
+    int i;
+    for(i=0;i<d-1;i++)
+    {
+        ptr=ptr->link;
+    }
+    if(d==1)                //to delete the first node
+    {
+        head = ptr->link;
+    }
+    else                    //to delete any other  node
+    {    
+    for(i=0;i<d-2;i++)
+    {
+        ptr1 = ptr1->link;
+    }
+    ptr1->link = ptr->link;
+    free(ptr);               //free that node's memory in the heap after the adjustments of the links or address of other nodes.
+}
+}
+void print()                  //print the updated values    
+ {   
+    struct Node* ptr = head;
+    while(ptr!=NULL)
+    {
+        printf("%d ",ptr->data);
+        ptr = ptr->link;
+    }
+}
+int main()
+{
+    head = NULL;
+    int n,x,i,e,d;
+    printf("enter the number of elements\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        printf("enter the elements one by one\n");
+        scanf("%d",&x);
+        printf("enter the positions\n");
+        scanf("%d",&e);
+        insert(x,e);
+    }   
+        printf("enter the position to delete the node\n");
+        scanf("%d",&d);
+        take(d);
+        print();
+}
