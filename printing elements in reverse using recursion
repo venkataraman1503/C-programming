@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+   int data;
+   struct Node* link; 
+};
+struct Node* head;
+struct Node* ptr1;
+void insert(int x,int e)
+{
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = x;
+    if(e==1)
+    {
+        ptr->link = head;
+        head = ptr;
+        
+    }
+    else
+    {  
+     int i;
+     ptr1 = head; 
+     for(i=0;i<e-2;i++)
+    {
+       ptr1 = ptr1->link; 
+    }
+    ptr->link = ptr1->link;
+    ptr1->link = ptr;
+    
+    }
+}
+
+void print(struct Node* p)
+{   
+    if(p==NULL) return;
+    print(p->link);
+    printf("%d ",p->data);
+}
+int main()
+{
+    head = NULL;
+    int n,x,i,e;
+    printf("enter the number of elements\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        printf("enter the elements one by one\n");
+        scanf("%d",&x);
+        printf("enter the positions\n");
+        scanf("%d",&e);
+        insert(x,e);
+    }   
+        print(head);
+}
