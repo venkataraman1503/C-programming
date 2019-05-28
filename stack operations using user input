@@ -1,0 +1,45 @@
+#include <stdio.h>
+int a[10];
+int top = -1;
+void push(int x)
+{
+    a[++top] = x;
+}
+void print()
+{   
+    
+    if(top == -1)
+    {
+        printf("there are no elements in the stack\n");
+    }
+    int i;
+    printf("The stack contains....\n");
+    for(i=0;i<=top;i++)
+    {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+}
+void pop()
+{   
+    top = top- 1;
+}
+int main()
+{
+  int in,out,element,i;
+  printf("enter the number of elements to push\n");
+  scanf("%d",&in);
+  printf("enter the number of elements to pop out\n");
+  scanf("%d",&out);
+  for(i=0;i<in;i++)
+  { 
+      printf("enter the elements\n");
+      scanf("%d",&element);
+      push(element);
+  }
+  for(i=0;i<out;i++)
+  {
+      pop();
+  }
+   print();
+}
