@@ -2,15 +2,23 @@
 int a[10];
 int top = -1;
 void push(int x)
-{
+{   
+    if(top == sizeof(a)/sizeof(int)-1)
+    {
+        printf("The stack is full..no further -->pushh is possible...\n\n");
+        return;
+    }
+    else
+    {
     a[++top] = x;
+    }
 }
 void print()
 {   
     
     if(top == -1)
     {
-        printf("there are no elements in the stack\n");
+        printf("There are no elements in the stack\n");
     }
     int i;
     printf("The stack contains....\n");
@@ -43,3 +51,4 @@ int main()
   }
    print();
 }
+
