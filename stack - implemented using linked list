@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+struct Node* top;
+void pushy(int x)
+{
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = x;
+    ptr->next = top;
+    top = ptr;
+}
+void poppy()
+{
+    struct Node* ptr = top;
+    
+    top = ptr->next;
+    printf("%d is popped\n ",ptr->data);
+    free(ptr);
+}
+void print(struct Node* ptr)
+{ 
+    if(ptr == NULL)
+    {   
+        printf("\n");
+        printf("The top of the stack is : %d \n",top->data);
+        return;
+    }
+    printf("%d ",ptr->data);
+    print(ptr->next);
+}
+int main()
+{   
+    top = NULL;
+    int in,n,pp,i;
+    printf("Remember - You can only push or pop the elements only from one end..\n");
+    printf("enter the number of elements to be pushed\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {   printf("enter the elements one by one\n");
+        scanf("%d",&in);
+        pushy(in);
+    }
+    printf("enter the number of element to be popped out\n");
+    scanf("%d",&pp);
+    for(i=0;i<pp;i++)
+    {
+        poppy();
+    }
+    if(top == NULL)
+    {
+        printf("There are no values available in the stack ! ");
+    }
+    else
+    {
+     printf("The values available in the stack : ");
+    print(top);
+    }
+}
+  
