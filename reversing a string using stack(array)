@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{   
+    char a[19] = "imwanted";
+    int i;
+    int top=-1;   
+    char b[10];
+    i=0;
+    
+    while(a[i]!=0)                //code for pushing the elements into a stack created using an array
+    {
+        b[++top] = a[i];
+        i++;
+    }
+    i=0;
+   
+   
+   while(top!=-1)                //code for popping and placing it back in the initial array   
+   {
+    a[i] = b[top];
+    top = top-1;
+    i++;
+   }  
+  printf("%s\n",a); 
+}
