@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+int top = -1;
+char a[10];         //original string or expression
+printf("enter the expression\n");
+scanf("%s",&a);
+int n=strlen(a);       
+char b[10];         //for the stack
+int i;
+for(i=0;i<n;i++)
+{
+    if(a[i]=='{'||a[i]=='('||a[i]=='[')
+    {
+        b[++top]=a[i];
+    }
+    else if((a[i]==')'&&b[top]=='(') || (a[i]==']'&&b[top]=='[') || (a[i]=='}'&&b[top]=='{'))
+    {
+        top = top-1;
+    }
+    else
+    {
+       printf("Not balanced\n");      //modification for efficiency
+       return;
+    }
+}
+if(top == -1)
+{
+    printf("Expression is balanced\n");
+}
+else
+{
+    printf("expression is not balanced\n");
+}
+}
