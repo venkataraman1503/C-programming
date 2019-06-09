@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+    int data;
+    struct Node* address;
+};
+struct Node* head;
+struct Node* ptr1;
+void enqueue(int x)
+{
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = x;
+    if(head==NULL)
+    {
+        ptr->address = head;
+        head = ptr; 
+    }
+    else{
+        ptr->address = ptr1->address;
+        ptr1->address = ptr;
+    }
+    ptr1 = ptr;
+}
+
+void print()
+{   
+    struct Node* ptr2 = head;
+    while(ptr2!=0)
+     {
+     printf("%d\n",ptr2->data);
+     
+     ptr2 = ptr2->address;
+     
+     }
+}
+void dequeue()
+{   
+    head = head->address;
+    
+}
+void printafter()
+{
+    struct Node* ptr2 = head;
+    if(head!=NULL)
+    { 
+        printf("the elements present in the queue after dequeue operation(first-in--first-out :  \n");
+    while(ptr2!=0)
+     {
+     printf("%d\n",ptr2->data);
+     
+     ptr2 = ptr2->address;
+     
+     }
+    }
+}
+void isempty()
+{
+    if(head==NULL)
+    {
+        printf("Sorry the queue is empty\n");
+    }
+}
+    
+int main()
+{
+    head=NULL;
+    int n,x;
+    printf("enetr the number of elements which you want to insert\n");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {   
+        scanf("%d",&x);
+        enqueue(x);
+    }
+    printf("the elements in the queue are..\n");
+    print();
+    int m;
+    printf("enter number of elements to remove from the queue\n");
+    scanf("%d",&m);
+    for(int i=0;i<m;i++)
+    {
+        dequeue();
+    }
+    
+    printafter();
+    isempty();
+}
