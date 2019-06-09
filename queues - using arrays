@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+int a[10];
+rear = -1;
+front = -1;
+void enqueue(int in)
+{
+    a[++rear] = in;
+    if(rear==0)
+    {
+        front+=1;
+    }
+}
+void dequeue()
+{
+    printf("%d is not a part of the queue now due to the dequeue operation performed\n",a[front]);
+    front+=1;
+}
+void isempty()
+{
+    if(front>rear)
+    {
+        printf("there are no elements in the queue\n ");
+    }
+}
+int main()
+{ 
+    int n,i,in,out;
+    printf("Let us create a queue\n");
+    printf("enter the number of elements you want\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        printf("enter the elements one by one to insert in a queue\n");
+        scanf("%d",&in);
+        enqueue(in);
+    }
+    printf("enter the nummber of elements to remove\n");
+    scanf("%d",&out);
+    for(i=0;i<out;i++)
+    {
+        dequeue();
+    }
+    isempty();
+    if(front<=rear)
+    {
+    printf("the values inserted in the queue are..\n");
+    for(i=front;i<=rear;i++)
+    {
+        printf("%d\n",a[i]);
+    }
+    printf("the front value is %d\n",a[front]);
+    printf("the rear value is %d\n",a[rear]);
+    }
+    
+}
