@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+};
+struct Node* head;
+struct Node* ptr1;
+int count=0;
+int insert(int x)
+{
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = x;
+    printf("The value is %d and the address is %d\n",ptr->data,ptr);
+    ptr->left= NULL;
+    ptr->right  = NULL;
+    if(head == NULL)
+    {
+        head = ptr;
+        printf("THe address of the head node is %d\n",head);
+    }
+   else
+   {
+       while(count!=1)
+       {
+           if(x>ptr1->data)
+           {
+               if(ptr1->right==NULL)
+               {
+                   ptr1->right=ptr;
+                   printf("The address in the right node with a value %d is %d\n",ptr1->data,ptr1->right);
+                   count+=1;
+               }
+               else
+               {
+                   ptr1=ptr1->right;
+               }
+            
+           }
+           else if(x<ptr1->data)
+           {
+               if(ptr1->left==NULL)
+               {
+                   ptr1->left=ptr;
+                   printf("The address in the left node with a value %d is %d\n",ptr1->data,ptr1->left);
+                   count+=1;
+               }
+               else
+               {
+                   ptr1=ptr1->left;
+               }
+           }
+       }
+   }
+ptr1 = head;
+count=0;
+}
+void search(int s)
+{
+    while(count!=1)
+    {
+        if(s>ptr1->data && ptr1->right!=NULL)
+        {
+            ptr1=ptr1->right;
+        }
+        else if(s<ptr1->data && ptr1->left!=NULL)
+        {
+            ptr1=ptr1->left;
+        }
+        else if(s==ptr1->data)
+        {
+            printf("The element %d is found at address %d\n",s,ptr1);
+            count+=1;
+        }
+        else
+        {
+            printf("The element %d not found in the tree\n",s);
+            count+=1;
+        }
+    
+    }
+    count=0;
+    ptr1=head;
+}
+int main()
+{   
+    head = NULL;
+    ptr1 = NULL;
+    int n,e,s;
+    printf("enter the number of elements \n");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+        {
+            printf("elements\n");
+            scanf("%d",&e);
+            insert(e);
+        }
+        printf("enter the element to search\n");
+        scanf("%d",&s);
+        search(s);
+}
