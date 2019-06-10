@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+void increment(int* a)
+{
+    *a=*a+1;
+    printf("%d is the value in the pointer variable in inc function\n",a);
+    
+}
+int main()
+{   int a=10;
+    printf("%d in main\n",&a);
+    increment(&a);
+    printf("Result is %d\n",a);
+    
+    
+}
