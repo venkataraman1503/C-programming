@@ -1,0 +1,85 @@
+#include <stdio.h>
+struct node
+{
+    int data;
+    struct node* left;
+    struct node* right;
+};
+struct node* root = NULL;
+struct node* kai = NULL;
+
+void insert(int e)
+{
+    struct node* ptr = root;
+    if(root==NULL)
+    {
+        struct node* ptrn = (struct node*)malloc(sizeof(struct node));
+        ptrn->data = e;
+        ptrn->left = ptrn->right = NULL;
+        root = ptrn;
+    }
+    else
+    {
+        struct node* ptrn = (struct node*)malloc(sizeof(struct node));
+        ptrn->left = ptrn->right = NULL;
+        ptrn->data = e;
+        while(ptr!=NULL)
+        {
+            if(e>ptr->data)
+            {
+                kai = ptr;
+                ptr=ptr->right;
+            }
+            else
+            {
+                kai =  ptr;
+                ptr = ptr->left;
+            }
+        }
+        if(e>kai->data)
+        {
+            kai->right = ptrn;
+        }
+        else
+        {
+            kai->left = ptrn;
+        }
+        
+    }
+}
+void search(struct node* ptr,int e)
+{
+    if(ptr==NULL)
+    {
+        printf("element not found");
+        return;
+    }
+    else if(ptr->data == e)
+    {
+        printf("element = %d , found at %d , left=%d, right=%d\n",ptr->data,ptr,ptr->left,ptr->right);
+        return;
+    }
+    else if(e>ptr->data)
+    {
+        search(ptr->right,e);
+    }
+    else if(e<ptr->data)
+    {
+        search(ptr->left,e);
+    }
+    
+}
+void main()
+{
+    insert(3);
+    insert(8);
+    insert(6);
+    insert(7);
+    insert(1);
+    struct node* ptr = root;
+    search(ptr,3);
+    search(ptr,8);
+    search(ptr,6);
+    search(ptr,7);
+    search(ptr,1);
+}
