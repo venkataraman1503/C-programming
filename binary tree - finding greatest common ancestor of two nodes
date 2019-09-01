@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+struct node
+{
+    int data;
+    struct node* left;
+    struct node* right;
+};
+struct node* root = NULL;
+struct node* nnode(int e)
+{
+    struct node* ptr = (struct node*)malloc(sizeof(struct node));
+    ptr->data = e;
+    ptr->left = ptr->right = NULL;
+    return ptr;
+}
+struct node* insert(struct node* rot, int e)
+{  
+    if(root == NULL)
+    {
+        struct node* a = nnode(e);
+        root = a;
+    }
+    else if(rot == NULL)
+    {
+        struct node* a = nnode(e);
+        return a;
+        
+    }
+    else if(e>rot->data)
+    {
+        rot->right = insert(rot->right,e);
+    }
+    else
+    {
+        rot->left = insert(rot->left,e);
+    }
+}
+bool search(struct node* rot,int e)
+{
+    if(rot == NULL)
+    {
+        return false;
+    }
+    else if(rot->data == e)
+    {
+        return true ;
+    }
+    else if(e>rot->data)
+    {
+        search(rot->right,e);
+    }
+    else
+    {
+        search(rot->left,e);
+    }
+}
+int hca(struct node* rot,int m,int n)
+{
+    if(m>=rot->data && n>=rot->data)
+    {   
+        if(m==rot->right->data || n==rot->right->data)
+        {
+            printf("%d",rot->data);
+            return;
+        }
+        else
+        {
+        hca(rot->right,m,n);
+        
+        }
+    }
+    else
+    {
+        printf("%d",rot->data);
+        return;
+    }
+}
+int main()
+{   
+    int m,n;
+    insert(root,19);
+    insert(root,15);
+    insert(root,14);
+    insert(root,26);
+    insert(root,30);
+    insert(root,23);
+    insert(root,29);
+    insert(root,31);
+    insert(root,17);
+    insert(root,22);
+    insert(root,28);
+    insert(root,32);
+    insert(root,24);
+    insert(root,25);
+    printf("enter the two nodes for which you need to find the greatest common ancestor\n");
+    scanf("%d%d",&m,&n);
+    if(search(root,m)&&search(root,n)==true)
+    {
+        hca(root,m,n);
+    }
+    else
+    {
+        printf("element not found in the tree");
+    }
+    
+}
